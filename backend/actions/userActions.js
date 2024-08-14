@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const hashPassword = require("../utils/encrypt");
 
+// create a user
 const createUser = async (req, res) => {
   const { name, email, password, firstname, lastname, username } = req.body;
 
@@ -26,6 +27,7 @@ const createUser = async (req, res) => {
   });
 };
 
+// get alluser
 const getALLUser = async (req, res) => {
   try {
     const users = await User.find();
@@ -36,4 +38,28 @@ const getALLUser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getALLUser };
+// get user by id
+const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (user) {
+      return res.status(200).json({ user, message: "User found" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json({ message: "User not found" });
+  }
+};
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (user) {
+      return res.status(200).json({ user, message: "User deleted" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json({ message: "User not deleted" });
+  }
+};
+
+module.exports = { createUser, getALLUser, getUserById, deleteUser };
