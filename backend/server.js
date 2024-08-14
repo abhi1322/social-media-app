@@ -17,8 +17,8 @@ app.use(cors());
 connectDB();
 
 // routes
-app.use("/posts", postRouter);
-app.use("/users", userRouter);
+app.use("/users", userRouter); // user routes
+app.use("/posts", postRouter); // post routes
 // server listener
 app.listen(port, () => {
   console.log(`Server is running on port : http://localhost:${port}`);

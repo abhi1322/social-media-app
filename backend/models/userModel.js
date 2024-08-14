@@ -7,6 +7,14 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    firstname: {
+      type: String,
+      required: true,
+    },
+    lastname: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -16,10 +24,6 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
-      minlength: 8,
-      match:
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
       required: true,
     },
     profilePicture: {
@@ -32,6 +36,12 @@ const userSchema = new mongoose.Schema(
       },
     ],
     followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    following: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
