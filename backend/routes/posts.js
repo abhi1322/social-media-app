@@ -1,8 +1,8 @@
 const express = require("express");
+const User = require("../models/userModel");
+const { createPost } = require("../actions/postAction");
 const postRouter = express.Router();
 
-postRouter.get("/", function (req, res) {
-  res.end("welcome to post");
-});
+postRouter.post("/create", createPost);
 
 module.exports = postRouter;

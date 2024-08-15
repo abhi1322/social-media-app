@@ -15,7 +15,7 @@ userRouter.post("/u/create", createUser); // create user
 
 userRouter.get("/u/:id", getUserById); // get user by id
 
-userRouter.put("/u/:id", updateMany); // update user
+userRouter.put("/u/:id", upDateUser); // update user
 
 userRouter.delete("/u/:id", deleteUser); // delete user by id
 
