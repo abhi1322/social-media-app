@@ -19,7 +19,10 @@ connectDB();
 // routes
 app.use("/users", userRouter); // user routes
 app.use("/posts", postRouter); // post routes
+
+
 // server listener
 app.listen(port, () => {
-  console.log(`Server is running on port : http://localhost:${port}`);
+  console.log("\n\tSocialmedia  App backend ");
+  console.log(`\tServer is running on port : http://localhost:${port}`);
 });

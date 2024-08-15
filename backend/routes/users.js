@@ -4,14 +4,18 @@ const {
   createUser,
   getUserById,
   deleteUser,
+  upDateUser,
 } = require("../actions/userActions");
+const { updateMany } = require("../models/userModel");
 const userRouter = express.Router();
 
-userRouter.get("/getusers", getALLUser); // get all users
+userRouter.get("/all", getALLUser); // get all users
 
-userRouter.post("/create", createUser); // create user
+userRouter.post("/u/create", createUser); // create user
 
 userRouter.get("/u/:id", getUserById); // get user by id
+
+userRouter.put("/u/:id", updateMany); // update user
 
 userRouter.delete("/u/:id", deleteUser); // delete user by id
 
