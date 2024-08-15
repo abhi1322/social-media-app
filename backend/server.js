@@ -18,7 +18,7 @@ connectDB();
 
 // routes
 app.use("/users", userRouter); // user routes
-app.use("/posts", postRouter); // post routes
+app.use("/:userID/posts", postRouter); // post routes
 
 
 // server listener
