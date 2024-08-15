@@ -2,11 +2,7 @@ const Post = require("../models/postModel");
 const User = require("../models/userModel");
 
 // get all posts
-
 const getAllPosts = async (req, res) => {
-  console.log("params : ", req.params);
-  console.log("query : ", req.query);
-
   try {
     const posts = await Post.find().sort({ createdAt: -1 });
     res.json(posts);
@@ -16,9 +12,23 @@ const getAllPosts = async (req, res) => {
   }
 };
 
+// get post by id
+const getPostById = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    res.status(200).json(post);
+  } catch (error) {
+    console.log(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 // create post and update user
 const createPost = async (req, res) => {
-  console.log("body", req.body, ", params : ", req.params);
   const { img_url, caption } = req.body;
 
   if (!req.params.userID || !img_url || !caption) {
@@ -86,7 +96,6 @@ const updatePost = async (req, res) => {
 
 // delete post
 const deletePost = async (req, res) => {
-  console.log(req.params.id);
   try {
     const deletedPost = await Post.findOneAndDelete(req.params.id);
 
@@ -113,4 +122,5 @@ module.exports = {
   updatePost,
   deletePost,
   getAllPosts,
+  getPostById,
 };
