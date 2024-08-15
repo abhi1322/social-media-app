@@ -41,6 +41,7 @@ const createPost = async (req, res) => {
   }
 };
 
+// update post
 const updatePost = async (req, res) => {
   const { caption } = req.body;
 
@@ -66,6 +67,9 @@ const updatePost = async (req, res) => {
     res.status(500).json({ message: "Server Error", error: error.message });
   }
 };
+
+// delete post
+
 
 module.exports = {
   createPost,
