@@ -41,11 +41,33 @@ const createPost = async (req, res) => {
   }
 };
 
-const updatepost = async (req, res) => {
+const updatePost = async (req, res) => {
+  const { caption } = req.body;
 
+  if (!caption) {
+    return res.status(400).json({ message: "Caption is required" });
+  }
 
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.params.id,
+      {
+        caption: caption,
+      },
+      { new: true }
+    );
+
+    if (!updatedPost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    res.status(200).json({ message: "Updated post successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
 };
 
 module.exports = {
   createPost,
+  updatePost,
 };
