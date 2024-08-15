@@ -4,7 +4,12 @@ const User = require("../models/userModel");
 // get all posts
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await Post.find().sort({ createdAt: -1 });
+    const posts = await Post.find()
+      .populate({
+        path: "comments",
+        model: "Comment",
+      })
+      .sort({ createdAt: -1 });
     res.json(posts);
   } catch (error) {
     console.log(err);

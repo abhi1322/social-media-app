@@ -6,7 +6,7 @@ const commentSchema = new mongoose.Schema({
     ref: "User", // Reference to the User model
     required: true,
   },
-  text: {
+  comment: {
     type: String,
     required: true,
   },
@@ -16,6 +16,6 @@ const commentSchema = new mongoose.Schema({
   },
 });
 
-const Comment = mongoose.model("Comment", CommentSchema);
+const Comment = mongoose.model("Comment", commentSchema);
 
 module.exports = Comment;

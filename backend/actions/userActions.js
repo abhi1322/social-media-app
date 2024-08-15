@@ -41,7 +41,14 @@ const getALLUser = async (req, res) => {
 // get user by id
 const getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).populate({
+      path: "posts",
+      model: "Post",
+      populate: {
+        path: "comments",
+        model: "Comment",
+      },
+    });
     if (user) {
       return res.status(200).json({ user, message: "User found" });
     }
