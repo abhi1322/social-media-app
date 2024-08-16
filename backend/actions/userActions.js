@@ -58,6 +58,19 @@ const getUserById = async (req, res) => {
   }
 };
 
+// get user by username
+const getUserByUsername = async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.body.username });
+    if (user) {
+      return res.status(200).json({ user, message: "User found" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json({ message: "User not found" });
+  }
+};
+
 // Update user by id
 const upDateUser = async (req, res) => {
   const data = req.body;
@@ -95,4 +108,5 @@ module.exports = {
   getUserById,
   deleteUser,
   upDateUser,
+  getUserByUsername,
 };
