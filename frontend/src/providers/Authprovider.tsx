@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface User {
   id: string;
@@ -33,6 +34,7 @@ export const useAuth = (): AuthContextType => {
 const Authprovider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -45,10 +47,12 @@ const Authprovider = ({ children }: { children: ReactNode }) => {
         })
         .then((response) => {
           setUser(response.data);
+          navigate("/dashboard");
         })
         .catch(() => {
           localStorage.removeItem("token");
           setUser(null);
+          navigate("/login");
         })
         .finally(() => setLoading(false));
     } else {
@@ -66,11 +70,13 @@ const Authprovider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("userId", data.user.id); // Store user ID
     localStorage.setItem("username", data.user.username); // Store username
     setUser(data.user);
+    navigate("/dashboard");
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);
+    navigate("/login");
   };
 
   return (

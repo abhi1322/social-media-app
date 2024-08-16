@@ -10,7 +10,7 @@ const {
 } = require("../actions/userActions");
 const userRouter = express.Router();
 
-userRouter.get("/login", loginUser); // authenticated user
+userRouter.post("/login", loginUser); // authenticated user
 userRouter.get("/all", getALLUser); // get all users
 userRouter.post("/u/create", createUser); // create user
 userRouter.get("/u", getUserByUsername); // get user by username

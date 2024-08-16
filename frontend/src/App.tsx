@@ -9,8 +9,8 @@ import SignUp from "./pages/SignUp";
 
 const App: React.FC = () => {
   return (
-    <Authprovider>
-      <Router>
+    <Router>
+      <Authprovider>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
@@ -24,8 +24,8 @@ const App: React.FC = () => {
             }
           />
         </Routes>
-      </Router>
-    </Authprovider>
+      </Authprovider>
+    </Router>
   );
 };
 
