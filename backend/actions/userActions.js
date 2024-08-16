@@ -1,6 +1,28 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const hashPassword = require("../utils/encrypt");
+
+// Authentication
+
+const loginUser = async (req, res) => {
+  console.log(req.body);
+
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ message: "Email and password are required" });
+  }
+
+  const user = await User.findOne({ username: username });
+
+  if (user && bcrypt.compareSync(password, user.password)) {
+    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    return res.json({ token });
+  }
+  res.status(401).send("Invalid email or password");
+};
 
 // create a user
 const createUser = async (req, res) => {
@@ -109,4 +131,5 @@ module.exports = {
   deleteUser,
   upDateUser,
   getUserByUsername,
+  loginUser,
 };
