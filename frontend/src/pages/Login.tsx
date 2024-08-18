@@ -6,6 +6,7 @@ import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Logo from "@/assets/Circle-light-mode.svg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const Login = () => {
       localStorage.setItem("username", response.data.user.lastname);
 
       navigate("/dashboard");
+      window.location.reload();
     } catch (err) {
       setError("Invalid username or password");
       console.error("Login failed", err);
@@ -55,6 +57,11 @@ const Login = () => {
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
+            <div className="mb-4">
+              <img className="mx-auto" src={Logo} alt="logo" />
+              <h1 className="font-semibold">Circle</h1>
+            </div>
+
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
               Enter your username below to login to your account

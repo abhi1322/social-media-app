@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import Logo from "@/assets/Circle-light-mode.svg";
 
 const SignUp = () => {
   return (
@@ -16,6 +17,10 @@ const SignUp = () => {
       <div className="mt-20 flex w-full  h-full justify-center lg:mt-0 lg:items-center">
         <Card className="mx-auto max-w-sm">
           <CardHeader>
+            <div className="mb-4 flex items-center gap-2">
+              <img src={Logo} alt="logo" />
+              <h1 className="font-semibold text-2xl">Circle</h1>
+            </div>
             <CardTitle className="text-xl">Sign Up</CardTitle>
             <CardDescription>
               Enter your information to create an account
@@ -44,7 +49,7 @@ const SignUp = () => {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password"  />
+                <Input id="password" type="password" />
               </div>
               <Button type="submit" className="w-full">
                 Create an account
