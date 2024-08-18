@@ -6,6 +6,11 @@ const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find()
       .populate({
+        path: "userID",
+        model: "User",
+        select: "_id username profilePicture",
+      })
+      .populate({
         path: "comments",
         model: "Comment",
       })

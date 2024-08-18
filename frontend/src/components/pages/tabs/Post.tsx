@@ -7,21 +7,45 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Heart, MessageCircle } from "lucide-react";
+import { get } from "node_modules/axios/index.d.cts";
 
-const Post = ({ caption, img_url, likes, comments, createdAt }) => {
-  
+const Post = ({ caption, img_url, likes, comments, createdAt, userID }) => {
+  const getTimeAgo = (time: Date) => {
+    const now = new Date();
+    const createdTime = new Date(time);
+    const diffInMilliseconds = now.getTime() - createdTime.getTime();
+
+    const diffInSeconds = Math.floor(diffInMilliseconds / 1000);
+    const diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
+    const diffInHours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
+    const diffInDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+
+    if (diffInSeconds < 60) {
+      return `${diffInSeconds}s`; // Returns time in seconds
+    } else if (diffInMinutes < 60) {
+      return `${diffInMinutes}m`; // Returns time in minutes
+    } else if (diffInHours < 24) {
+      return `${diffInHours}h`; // Returns time in hours
+    } else {
+      return `${diffInDays}d`; // Returns time in days
+    }
+  };
+
   return (
     <div className="border-b">
       <Card className="w-[530px] border-none shadow-none">
         <CardHeader className="flex items-center gap-4 flex-row">
           <img
-            className="w-12 h-12 rounded-full"
-            src="https://randomuser.me/api/portraits/men/42.jpg"
+            className="w-12 h-12 object-cover border rounded-full overflow-hidden"
+            src={userID.profilePicture}
             alt="profile-image"
           />
-          <div>
-            <h2 className="font-semibold text-sm">abhishek</h2>
-            <p className="text-xs text-neutral-500">Posted on 2022-12-12</p>
+          <div className="flex items-center gap-2">
+            <h2 className="font-semibold text-sm">{userID.username}</h2>
+
+            <p className="text-xs text-neutral-400">
+              . {getTimeAgo(createdAt)}
+            </p>
           </div>
         </CardHeader>
         <CardContent>
