@@ -5,8 +5,8 @@ import { CircleUserRoundIcon, Home, PlusCircleIcon } from "lucide-react";
 const SideBar = ({ setActivePage, activePage }) => {
   return (
     <>
-      <aside className="border-r w-40 min-h-screen flex flex-col  justify-start px-2 py-10 ">
-        <img className="w-9 mx-auto" src={Logo} alt="logo" />
+      <aside className="border-r lg:w-40 min-h-screen flex flex-col  justify-start px-2 py-10 ">
+        <img className="w-8 lg:w-9 mx-auto" src={Logo} alt="logo" />
         <nav className="mt-16 w-full grid gap-2 font-semibold">
           <button
             className={`flex gap-2 items-center text-sm hover:bg-neutral-100 px-4 py-3 rounded-md ${
@@ -17,7 +17,7 @@ const SideBar = ({ setActivePage, activePage }) => {
             onClick={() => setActivePage("home")}
           >
             <Home className="w-5 h-5" />
-            <p>Home</p>
+            <p className="hidden lg:flex">Home</p>
           </button>
           <button
             className={`flex gap-2 items-center text-sm hover:bg-neutral-100 px-4 py-3 rounded-md ${
@@ -28,7 +28,7 @@ const SideBar = ({ setActivePage, activePage }) => {
             onClick={() => setActivePage("add post")}
           >
             <PlusCircleIcon className="w-5 h-5" />
-            <p>Add post</p>
+            <p className="hidden lg:flex">Add post</p>
           </button>
           <button
             className={`flex gap-2 items-center text-sm hover:bg-neutral-100 px-4 py-3 rounded-md ${
@@ -39,7 +39,7 @@ const SideBar = ({ setActivePage, activePage }) => {
             onClick={() => setActivePage("profile")}
           >
             <CircleUserRoundIcon className="w-5 h-5" />
-            <p>Profile</p>
+            <p className="hidden lg:flex">Profile</p>
           </button>
         </nav>
       </aside>
