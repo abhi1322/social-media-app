@@ -72,7 +72,7 @@ const AddPost = () => {
   };
 
   return (
-    <div className="w-full h-screen grid grid-cols-2  px-16 py-12">
+    <div className="w-full h-screen grid lg:grid-cols-2 grid-cols-1  gap-8 px-16 py-12">
       <div>
         <h4 className="text-2xl font-semibold">Add Post, {username}</h4>
         <p className="text-sm text-neutral-400">
@@ -121,7 +121,7 @@ const AddPost = () => {
           </Card>
         </div>
       </div>
-      <div>
+      <div className="pb-8">
         <h6 className="font-semibold text-lg mb-8">Post preview</h6>
 
         <div>

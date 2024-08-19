@@ -6,12 +6,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC9gIW91tO-5njbQGY9RBzCgXVbUdWOHYU",
-  authDomain: "socialmedia-circle.firebaseapp.com",
-  projectId: "socialmedia-circle",
-  storageBucket: "socialmedia-circle.appspot.com",
-  messagingSenderId: "392007012126",
-  appId: "1:392007012126:web:7e6f11e3d61a62c3e0430f",
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKETA,
+  messagingSenderId: process.env.MESSAGE_SENDER_ID,
+  appId: process.env.APP_ID,
 };
 
 // Initialize Firebase
