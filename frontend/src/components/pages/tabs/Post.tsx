@@ -4,12 +4,27 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Heart, MessageCircle } from "lucide-react";
-import { get } from "node_modules/axios/index.d.cts";
 
-const Post = ({ caption, img_url, likes, comments, createdAt, userID }) => {
+const Post = ({
+  caption,
+  img_url,
+  likes,
+  comments,
+  createdAt,
+  userID,
+}: {
+  caption: string;
+  img_url: string;
+  likes: number;
+  createdAt: Date;
+  userID: {
+    profilePicture: string;
+    username: string;
+  };
+  comments: Array<object>;
+}) => {
   const getTimeAgo = (time: Date) => {
     const now = new Date();
     const createdTime = new Date(time);
@@ -39,6 +54,7 @@ const Post = ({ caption, img_url, likes, comments, createdAt, userID }) => {
             className="w-12 h-12 object-cover border rounded-full overflow-hidden"
             src={userID.profilePicture}
             alt="profile-image"
+            loading="lazy"
           />
           <div className="flex items-center gap-2">
             <h2 className="font-semibold text-sm">{userID.username}</h2>

@@ -22,7 +22,7 @@ const Home = () => {
   }, []);
 
   return (
-    <ScrollArea className="w-[530px] max-h-svh  justify-center flex  ">
+    <ScrollArea hidden className="w-[530px] max-h-svh  justify-center flex  ">
       {posts.map((post, i) => (
         <Post {...post} key={i} />
       ))}
