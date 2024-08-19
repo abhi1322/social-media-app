@@ -72,14 +72,16 @@ const AddPost = () => {
   };
 
   return (
-    <div className="w-full h-screen grid lg:grid-cols-2 grid-cols-1  gap-8 px-16 py-12">
+    <div className="w-full h-screen grid lg:grid-cols-2 grid-cols-1 px-8 py-6 gap-8 lg:px-16 lg:py-12">
       <div>
-        <h4 className="text-2xl font-semibold">Add Post, {username}</h4>
+        <h4 className="text-2xl font-semibold">
+          Add Post, <span className="text-blue-600">@{username}</span>
+        </h4>
         <p className="text-sm text-neutral-400">
           To add post in your account, please fill this form bellow
         </p>
         <div className="mt-8">
-          <Card className="w-[600px]">
+          <Card className="lG:w-[600px]">
             <CardHeader>
               <CardTitle>Add post</CardTitle>
             </CardHeader>
@@ -121,7 +123,7 @@ const AddPost = () => {
           </Card>
         </div>
       </div>
-      <div className="pb-8">
+      <div className="pb-40 ">
         <h6 className="font-semibold text-lg mb-8">Post preview</h6>
 
         <div>

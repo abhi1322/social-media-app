@@ -48,8 +48,8 @@ const Post = ({
 
   return (
     <div className="border-b">
-      <Card className="w-[530px] border-none shadow-none">
-        <CardHeader className="flex items-center gap-4 flex-row">
+      <Card className="w-full md:w-[460px]  border-none shadow-none">
+        <CardHeader className="flex items-center ml-4 gap-4 flex-row">
           <img
             className="w-12 h-12 object-cover border rounded-full overflow-hidden"
             src={userID.profilePicture}
@@ -66,12 +66,12 @@ const Post = ({
         </CardHeader>
         <CardContent>
           <img
-            className="w-full object-cover h-[580px]"
+            className="w-full md:w-[410px] object-cover h-[580px]"
             src={img_url}
             alt="post-img"
           />
         </CardContent>
-        <CardFooter className="flex-col items-start gap-4">
+        <CardFooter className="flex-col ml-4 items-start gap-4">
           <div className="flex gap-4">
             <button className="text-sm text-neutral-700 flex gap-1 items-center">
               <Heart />
