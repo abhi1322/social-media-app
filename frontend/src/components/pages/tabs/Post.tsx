@@ -29,7 +29,6 @@ const Post = ({
   };
   comments: Array<object>;
 }) => {
-  const [toggleLike, setToggleLike] = useState(false);
 
   const getTimeAgo = (time: Date) => {
     const now = new Date();
@@ -54,9 +53,7 @@ const Post = ({
 
   const loggedUser = localStorage.getItem("userId");
 
-  const handleClick = () => {
-    console.log("User clicked");
-  };
+
 
   const handleLike = async () => {
     try {

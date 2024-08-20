@@ -5,7 +5,7 @@ import { CircleUserRoundIcon, Home, PlusCircleIcon } from "lucide-react";
 const SideBar = ({ setActivePage, activePage }) => {
   return (
     <>
-      <aside className="hidden border-r lg:w-40 min-h-screen md:flex flex-col  justify-start px-2 py-10 ">
+      <aside className="hidden border-r lg:w-40 min-h-screen md:flex flex-col bg-white  justify-start px-2 py-10 ">
         <img className="w-8 lg:w-9 mx-auto" src={Logo} alt="logo" />
         <nav className="mt-16 w-full grid gap-2 font-semibold">
           <button
