@@ -20,7 +20,7 @@ const Home = () => {
   useEffect(() => {
     getPosts();
     console.log("posts", posts);
-  }, []);
+  }, [posts]);
 
   return (
     <>

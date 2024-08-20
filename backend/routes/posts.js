@@ -5,7 +5,7 @@ const {
   getAllPosts,
   deletePost,
   getPostById,
-  
+  toggleLike,
 } = require("../actions/postAction");
 const { addcomments, getComment } = require("../actions/commentAction");
 const postRouter = express.Router({ mergeParams: true });
@@ -17,9 +17,12 @@ postRouter.post("/p/create", createPost); // create a new post
 postRouter.put("/p/:id", updatePost); // update a post
 postRouter.delete("/p/:id", deletePost); // delete a post
 
+// like routes
+
+postRouter.post("/p/:id/l", toggleLike);
+
 //  commment routes
 postRouter.get("/p/:id/c", getComment);
-postRouter.post("/p/:id/c", addcomments)
-
+postRouter.post("/p/:id/c", addcomments);
 
 module.exports = postRouter;

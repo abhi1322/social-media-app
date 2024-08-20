@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Profile = () => {
   const userId = localStorage.getItem("userId");
@@ -16,6 +16,13 @@ const Profile = () => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    getUser();
+
+    console.log("User", user);
+    // eslint-disable-next-line
+  }, []);
 
   return <div>Profile</div>;
 };

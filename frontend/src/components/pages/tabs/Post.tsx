@@ -5,9 +5,12 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import axios from "axios";
 import { Heart, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
 const Post = ({
+  _id,
   caption,
   img_url,
   likes,
@@ -15,9 +18,10 @@ const Post = ({
   createdAt,
   userID,
 }: {
+  _id: string;
   caption: string;
   img_url: string;
-  likes: number;
+  likes: Array<string>;
   createdAt: Date;
   userID: {
     profilePicture: string;
@@ -25,6 +29,8 @@ const Post = ({
   };
   comments: Array<object>;
 }) => {
+  const [toggleLike, setToggleLike] = useState(false);
+
   const getTimeAgo = (time: Date) => {
     const now = new Date();
     const createdTime = new Date(time);
@@ -43,6 +49,23 @@ const Post = ({
       return `${diffInHours}h`; // Returns time in hours
     } else {
       return `${diffInDays}d`; // Returns time in days
+    }
+  };
+
+  const loggedUser = localStorage.getItem("userId");
+
+  const handleClick = () => {
+    console.log("User clicked");
+  };
+
+  const handleLike = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/${loggedUser}/posts/p/${_id}/l`
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -74,8 +97,16 @@ const Post = ({
         <CardFooter className="px-0 flex-col ml-4 items-start gap-4">
           <div className="flex gap-4">
             <button className="text-sm text-neutral-700 flex gap-1 items-center">
-              <Heart />
-              <span className="ml-1">{likes} Like</span>
+              {likes.includes(loggedUser) ? (
+                <button onClick={handleLike}>
+                  <Heart fill="#ef4444" className="text-red-500" />
+                </button>
+              ) : (
+                <button onClick={handleLike}>
+                  <Heart />
+                </button>
+              )}
+              <span className="ml-1">{likes.length} Like</span>
             </button>
             <button className="text-sm text-gray-600 flex gap-1 items-center">
               <MessageCircle />

@@ -127,10 +127,44 @@ const deletePost = async (req, res) => {
   }
 };
 
+// add like
+const toggleLike = async (req, res) => {
+  try {
+    // Find the post by ID
+    const post = await Post.findById(req.params.id);
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // Check if the user ID is already in the likes array
+    const userIndex = post.likes.indexOf(req.params.userID);
+
+    if (userIndex === -1) {
+      // User has not liked the post, so add the like
+      post.likes.push(req.params.userID);
+      await post.save();
+      return res.status(200).json({ message: "Like added successfully" });
+    } else {
+      // User has already liked the post, so remove the like (unlike)
+      post.likes.splice(userIndex, 1);
+      await post.save();
+      console.log("post liked");
+      return res.status(200).json({ message: "Like removed successfully" });
+    }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Error while toggling like", error: error.message });
+  }
+};
+
 module.exports = {
   createPost,
   updatePost,
   deletePost,
   getAllPosts,
   getPostById,
+  toggleLike,
 };
